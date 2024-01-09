@@ -5,7 +5,7 @@
 - a programming paradigm characterized by the use of mathematical functions and the avoidance of *unintentional* side effects
 - a programming style that uses only pure functions without side effects
 
-** note that programs need side effects to carry out action such as sending email, saving to db etc... **
+**note that programs need side effects to carry out action such as sending email, saving to db etc...**
 
 When functional programmers look at code, they immediately begin to classify code into three categories:
 1. Actions
