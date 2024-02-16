@@ -1,0 +1,53 @@
+RDBMS stands for Relational Database Management System.
+
+RDBMS is the basis for SQL, and for all modern database systems such as MS SQL Server, IBM DB2, Oracle, MySQL, and Microsoft Access.
+
+- SELECT * FROM table;
+- SELECT column1,column2 FROM table;
+- SELECT column1 FROM table WHERE column2 = "text"
+- SELECT DISTINCT column1 FROM customers;    // distict, individual, different
+
+- SELECT * FROM table WHERE column2 < number;   // < , > , <= , >= , !=
+- SELECT * FROM table WHERE column2 BETWEEN number AND number;
+- SELECT * FROM table WHERE column1 LIKE '%...'        // '.../'
+- SELECT * FROM table WHERE column2 IN ('...','...')  
+
+- SELECT * FROM table ORDER BY column1;
+- SELECT * FROM table ORDER BY column2 DESC;      // ASC
+
+- SELECT * FROM table WHERE column2="text" AND column1 < number; 
+- SELECT * FROM table WHERE column3="text" AND (column2 LIKE '%A' OR column2 LIKE 'A%');
+- SELECT * FROM table WHERE  NOT column2="text" AND NOT column1="text";
+
+- INSERT INTO table (column1,column2) VALUES ("...","...","...");
+
+- SELECT * FROM table WHERE column3 IS NOT NULL;
+
+- UPDATE table SET column1="..." WHERE column2 = number;     // without where all column will be updated
+- DELETE table  WHERE column1 = number;      // without where all column will be deleted
+- DELETE FROM  table;
+- DELETE FROM column1;
+- DROP TABLE table;
+
+- SELECT * FROM table WHERE column1='...' LIMIT 3;
+- SELECT MIN(column1) FROM table;
+- SELECT MAX(column2) AS max_price FROM table WHERE price> number;
+- SELECT COUNT(column1) AS number_record FROM table;  // SUM(), AVG()
+
+**Wildcards:**
+- *	Represents zero or more characters	bl* finds bl, black, blue, and blob
+- ?	Represents a single character	h?t finds hot, hat, and hit
+- [] Represents any single character within the brackets	h[oa]t finds hot and hat, but not hit
+- !	Represents any character not in the brackets	h[!oa]t finds hit, but not hot and hat
+- -	Represents any single character within the specified range
+- #	Represents any single numeric character	2#5 finds 205, 215, 225, 235, 245, 255, 265, 275, 285, and 295
+
+- SELECT * FROM Customers WHERE Country NOT IN ('Germany', 'France', 'UK');
+- SELECT * FROM Orders WHERE OrderDate BETWEEN '1996-07-01' AND '1996-07-31';
+
+- SELECT Products.ProductID, Products.ProductName, Categories.CategoryName FROM Products INNER JOIN Categories ON Products.CategoryID = Categories.CategoryID;
+
+
+
+
+
