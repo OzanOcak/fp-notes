@@ -80,10 +80,11 @@ CREATE DATABASE testDB;
 DROP DATABASE databasename;
 CREATE TABLE Persons (
     PersonID int,
-    LastName varchar(255) constraint,
+    LastName varchar(255) Constraint,
     FirstName varchar(255) NOT NULL UNIQUE,
     Address varchar(255),
     City varchar(255),
+    CHECK (Age>=18),    -- check if age larger than 
     PRIMARY KEY (ID)
 );
 DROP TABLE table_name;
@@ -92,6 +93,9 @@ CREATE TABLE Orders (
     OrderID int NOT NULL,
     OrderNumber int NOT NULL,
     PersonID int,
+    City varchar(255) DEFAULT 'Toronto'
     PRIMARY KEY (OrderID),
     FOREIGN KEY (PersonID) REFERENCES Persons(PersonID)
 );
+
+
