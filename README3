@@ -1,4 +1,3 @@
-```sql
 
 CREATE TABLE users (id INTEGER, name TEXT, age INTEGER, is_admin BOOLEAN);
 INSERT into users (id, name, age, is_admin) values (1, 'Lane Holland', 27, false);
@@ -36,4 +35,126 @@ INSERT into countries ( code, name ) values ( "IN", "India" );
 INSERT into users (id,name,country_code) values (0,"Jerry","US");
 INSERT into users (id,name,country_code) values (1,"Amit","IN");
 
-```
+---
+
+SELECT name FROM users WHERE first_name IS NOT NULL;
+DELETE from users WHERE id = 2;
+UPDATE employees SET job_title = 'Backend Engineer', salary = 150000 WHERE id = 251;
+
+---
+
+## ORM
+
+- SQL
+
+user := User{
+    ID: 10,
+    Name: "Lane",
+    IsAdmin: false,
+}
+
+db.Exec("INSERT INTO users (id, name, is_admin) VALUES (?, ?, ?);", user.ID, user.Name, user.IsAdmin)
+
+---
+
+SELECT employee_id AS id, employee_name AS name FROM employees;
+SELECT quantity, IIF(quantity < 10, "Order more", "In Stock") AS directive from products
+SELECT employee_name, salary FROM employees WHERE salary BETWEEN 30000 and 60000;
+SELECT DISTINCT previous_company FROM employees;  // distinc removes duplications
+SELECT product_name, quantity, shipment_status FROM products WHERE shipment_status = 'pending' AND quantity BETWEEN 0 and 10;
+SELECT count(*) FROM users WHERE (country_code = ('US') OR country_code = ('CA')) AND age < 18;
+SELECT name, age, country_code FROM users WHERE country_code IN ('US', 'CA', 'MX');
+SELECT * from users WHERE name LIKE 'Al%';
+SELECT * from users WHERE name LIKE 'Al___';
+
+---
+
+SELECT * from transactions WHERE note LIKE '%lunch%' LIMIT 5;
+SELECT name, price, quantity FROM products ORDER BY quantity desc;
+SELECT * from transactions WHERE amount BETWEEN 10 and 80 ORDER BY amount desc LIMIT 4;
+
+---
+
+SELECT count(*) FROM transactions WHERE user_id = 6 and was_successful = true;
+SELECT sum(amount) FROM transactions WHERE user_id = 9;
+select user_id, max(amount) from transactions where user_id = 4 and sender_id is NOT NULL;
+select min(age) from users where country_code = 'US';
+SELECT album_id, count(song_id) FROM songs GROUP BY album_id;
+SELECT avg(age) FROM users WHERE country_code = 'US';
+SELECT sender_id, sum(amount) as balance FROM transactions WHERE sender_id IS NOT NULL AND note LIKE '%lunch%' GROUP BY sender_id HAVING balance > 20  ORDER BY balance asc;
+select round(avg(age), 0) as round_age from users where country_code = 'US';
+
+---
+
+SELECT * from transactions WHERE user_id = ( SELECT id FROM users WHERE name = 'David')
+SELECT id, song_name, artist_id FROM songs WHERE artist_id IN ( SELECT id FROM artists WHERE artist_name LIKE 'Rick%');
+SELECT * FROM users WHERE age_in_days > ( SELECT 365 * 40)
+
+---
+
+## One to Many
+
+CREATE TABLE users (
+  id INTEGER PRIMARY KEY,
+  name TEXT NOT NULL,
+  age INTEGER NOT NULL,
+  username TEXT UNIQUE,
+  password TEXT NOT NULL,
+  is_admin BOOLEAN
+);
+
+CREATE TABLE countries (
+  id INTEGER PRIMARY KEY,
+  country_code TEXT,
+  name TEXT,
+  user_id INTEGER,
+  FOREIGN KEY (user_id)
+  REFERENCES users (id)
+);
+
+## Many to Many
+
+CREATE TABLE users (
+  id INTEGER PRIMARY KEY,
+  name TEXT NOT NULL,
+  age INTEGER NOT NULL,
+  username TEXT UNIQUE,
+  password TEXT NOT NULL,
+  is_admin BOOLEAN
+);
+
+CREATE TABLE users_countries (
+  country_id INTEGER,
+  user_id INTEGER,
+  UNIQUE(country_id, user_id)
+);
+
+CREATE TABLE countries (
+  id INTEGER PRIMARY KEY,
+  country_code TEXT,
+  name TEXT
+);
+
+---
+
+### Inner Join
+
+SELECT * FROM users INNER JOIN countries  ON countries.country_code = users.country_code;
+SELECT users.name, users.age, countries.name as country_name FROM users INNER JOIN countries on countries.country_code = users.country_code ORDER BY country_name;
+
+### Left Join
+
+SELECT e.name, d.name FROM employees e LEFT JOIN departments d ON e.department_id = d.id;
+SELECT users.name, sum(transactions.amount) as sum, count(transactions.id) as count FROM users
+LEFT JOIN transactions
+ON users.id = transactions.user_id
+GROUP BY users.id
+ORDER BY sum DESC;
+
+SELECT users.id, users.name, users.age, users.username, countries.name as country_name, sum(transactions.amount) as balance
+FROM users
+INNER JOIN countries
+ON users.country_code = countries.country_code
+INNER JOIN transactions
+ON users.id = transactions.user_id
+WHERE users.id = 6;
