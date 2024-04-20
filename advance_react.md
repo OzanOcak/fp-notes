@@ -21,7 +21,7 @@ return(
 
 }
 ```
-### Abstracting with custom hooks doesn't change performance problem
+#### Abstracting with custom hooks doesn't change performance problem
 
 Using custom hook doesn't change child components being rerendered, it is just abstract functions and states so reading code become easier
 
@@ -82,7 +82,7 @@ const ButtonWithModalDialog = () => {
   );
 };
 ```
-## Pure Functions
+### 2-Pure Functions
 
 For some components, it is not possible to move state down
 
