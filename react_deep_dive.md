@@ -3,8 +3,8 @@
 When state is changed react function/component will be re-rendered along with all the child components.
 React doesn't check props.
 
-```javascriptconst
-Component = () => {
+```javascript
+const Component = () => {
 const [value,setValue] = useState("1");
 
 return (
