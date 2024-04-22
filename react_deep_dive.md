@@ -98,9 +98,47 @@ const ChildMemo = React.memo(Child);
 
 const Parent = () => {
   const onChangeMemo = useCallback(()=>{ //do something },[])
-  return <ChildMemo onChange={onChangeMemo} />
+  const valueMemo = useMemo(() => return {value: 'value'};)
+
+  return <ChildMemo onChange={onChangeMemo} someValue={valueMemo}/>
 }
 ```
+
+While Parent component can be memorized with React.memo, since child component is an element of react object, it sould be memorized with useMemo
+
+```javascript
+
+const MemoParent = React.memo(Parent);
+const Child = () => <div>something</div>;
+
+const Component = () => {
+  const onClick = useCallBack(()=>{
+    // do something
+  },[])
+
+  const child = useMemo(()=><Child/>,[]);
+
+  return(
+    <MemoParent onClck={onClick}>
+      {child}
+    </MemoParent>)
+}
+```
+
+### 4) Using key index
+
+- We shouldn't use uuid because every render.it will assign new numbers
+- We shouldn't use index number because if we assign new value at the top of list, all lisr index will be shifted (if the array is static,using index is fine)
+
+  best practice for dynamic arrays :
+
+```javascript
+const data =[
+{id:'kitten1', name:'Mittens'},
+{id:'kitten2', name:'Grumpy'}
+{id:'kitten3', name:'Mr.Cat'}];
+```
+
 
 
 
