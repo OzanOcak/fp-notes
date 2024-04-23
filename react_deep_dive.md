@@ -18,7 +18,7 @@ when button is clicked, state is updated then Component re-rendered. reagardless
 
 When the state is change or parent component re-rendered, the child component will be re-rendered too. There are some options to keep child components limited.
 
-### a) Moving sate down
+### a) Moving state down
 
 ```javascript
 const Component= () => {
