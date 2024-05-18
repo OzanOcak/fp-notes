@@ -5,8 +5,8 @@ use-load-assets.ts is load assets, carry out migration and activate slash screen
 ```javascript
 import * as FileSystem from "expo-file-system";
 
-  useEffect(() => {
-			console.log(FileSystem.documentDirectory)   
-	},[])
+useEffect(() => {
+  console.log(FileSystem.documentDirectory)   
+},[])
 ```
 then all we need to do open the link is logged in terminal.
