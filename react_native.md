@@ -2,6 +2,10 @@
 
 use-load-assets.ts is load assets, carry out migration and activate slash screen. this is where we can access the sqlite database
 
+```console
+npx expo install expo-file-system
+```
+
 ```javascript
 import * as FileSystem from "expo-file-system";
 
