@@ -29,4 +29,40 @@ current time stamp is 4 hours off replace it with
     .default(sql`(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))`)
 ```
 
+## 3) expo-router passing params, and using it as a number
 
+```javascript
+<Link
+   asChild
+   href={{
+     pathname: "/categories",
+     params: { id: language.id },
+   }}
+>
+```
+then we can get the param by accessing key 
+
+```javascript
+   const languageIdParam = useLocalSearchParams()
+   useEffect(() => console.log(languageIdParam.id), [])
+```
+you can also pass multipile parameters
+
+```javascript
+<Link
+   asChild
+   href={{
+	pathname: "/words",
+	params: { l: languageIdParam.id, c: category.id },
+   }}
+>
+```
+and we need to access by using their keys (ex: obj[`key`] )
+
+```javascript
+   const params = useLocalSearchParams()
+
+   const lang = params.l
+   const cat = params.c
+   useEffect(() => console.log(lang, cat), [])
+```
