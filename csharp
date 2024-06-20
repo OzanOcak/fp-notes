@@ -1,6 +1,18 @@
 ### Reading and Writing to Console
 
 ```csharp
+using System;
+
+public class HelloWorld
+{
+    public static void Main(string[] args)
+    {
+        Console.WriteLine("Hello, World!");
+    }
+}
+```
+
+```csharp
 Console.WriteLine("What's your name?");
 string name = Console.ReadLine();
 Console.WriteLine($"Hello, {name}!");
