@@ -1,4 +1,7 @@
-### Reading and Writing to Console
+### Intro to C#
+
+System username for calling Console, static main because its lifetime will be same as the thread
+and it will be internal linked which means cant accessable outside files, and it is stored in static area(not stack or heap)
 
 ```csharp
 using System;
@@ -11,6 +14,10 @@ public class HelloWorld
     }
 }
 ```
+
+
+
+### Reading and Writing to Console
 
 ```csharp
 Console.WriteLine("What's your name?");
