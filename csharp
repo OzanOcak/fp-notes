@@ -1,0 +1,11 @@
+### Reading and Writing to Console
+
+```cs
+Console.WriteLine("What's your name?");
+string name = Console.ReadLine();
+Console.WriteLine($"Hello, {name}!");
+
+int num = 42;
+double pi = 3.14159;
+Console.WriteLine($"Number: {num:D4}, Pi: {pi:F2}");
+```
