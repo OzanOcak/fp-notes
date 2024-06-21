@@ -58,3 +58,63 @@ int i = (int)c; // Explicit conversion from char to int (ASCII value of 'A' is 6
 char c2 = (char)65; // Explicit conversion from int to char ('A')
 ```
 
+### - Arrays 
+
+```csharp
+int[] numbers;
+string[] names;
+
+int[] numbers = { 1, 2, 3, 4, 5 };
+string[] names = { "John", "Jane", "Bob" };
+
+int[] numbers = new int[5];
+string[] names = new string[3];
+
+
+Console.WriteLine(numbers[2]); // Output: 3
+```
+Arrays in C# have several useful properties and methods:
+
+Length: Returns the number of elements in the array.
+Array.Sort(): Sorts the elements of the array in ascending order.
+Array.Reverse(): Reverses the order of the elements in the array.
+Array.Copy(): Creates a new array by copying the elements of an existing array.
+
+### - Methods
+
+```csharp
+// calling a regular method needed to creat a new obj outta its class
+
+Program p = new Program();
+p.function();
+
+// calling static method doesnt need to create an obj
+
+Program.static_function(); // if it is i the same class static_function() is enough to call
+```
+
+```csharp
+
+int sum= add(10,20);
+
+//argument pass by value unless use a ref keyword
+
+Calculate(10, 20, out total, out product);
+
+public static void Calculate(int a,int b,out sum,int out product){
+  sum=a+b;
+  product= a* b;
+}
+
+// params keyword
+
+Calculate(){params int[] Numbers}{
+  int sum=0;
+  foreach(int i in Numbers){
+    sum+=i;
+  }
+  Console.Writeline(sum);
+}
+
+```
+ 
