@@ -21,5 +21,5 @@ hugo new posts/my-first-post.md
 cd content/posts/
 vim my-first-post.md
 ```
-this comment will create a markdown file under content/posts
+this comment will create a markdown file under content/posts or we can open vscode
 
