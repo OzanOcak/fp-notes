@@ -1,4 +1,4 @@
-## hugo
+## HUGO
 
 ```console
 brew install go
@@ -46,6 +46,23 @@ create 2 more html file under _default folder list.html for landing page and sin
 {{ define "main"}}
   {{ .Content}}
 {{ end }}
+```
+
+## Stylesheet
+
+```html
+{{ $style := resources.Get "sass/main.scss" | resources.ToCSS | resources.Minify }}
+<link rel="stylesheet" href="{{ $style.Permalink }}">
+```
+
+then create main.scss under assets/sass/ folder
+
+```css
+body {
+  width: 400px;
+  margin: 0 auto;
+  font-family: sans-serif;
+}
 ```
 
 
