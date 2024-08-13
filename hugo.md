@@ -8,18 +8,31 @@ brew install hugo
 hugo version
 
 hugo new site myspace
-cd myspace/themes/
-git clone https://github.com/knadh/hugo-ink.git
+code .
 ```
 
-there is example site under themes/hugo-ink
-go back root folder to myspace
-you can refer from https://gohugo.io/getting-started/quick-start/ 
+Above we can see basic hugo structure, we need a theme to be able to see the site
 
 ```console
-hugo new posts/my-first-post.md
-cd content/posts/
-vim my-first-post.md
+cd myspace
+git init
+git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke
+echo "theme = 'ananke'" >> hugo.toml
+hugo server
 ```
-this comment will create a markdown file under content/posts or we can open vscode
+we can also use git clone instead of fit submodule add
+
+* you can refer from https://gohugo.io/getting-started/quick-start/ 
+
+```console
+echo "theme = 'ananke'" >> hugo.toml
+hugo server
+```
+to add content and publish it(files in public folder)
+```console
+hugo new content content/posts/my-first-post.md
+hugo
+```
+delete draft = true or assign false
+
 
