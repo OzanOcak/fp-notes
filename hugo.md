@@ -11,7 +11,47 @@ hugo new site myspace
 code .
 ```
 
-Above we can see basic hugo structure, we need a theme to be able to see the site
+## Create custom layout
+
+create _index.md under content
+
+```markdown
+---
+title: Home
+---
+
+Hello World!!!
+```
+
+and about.md with title: About then create default layout as baseof.html under layouts folder unde _default folder
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Page.Title}}</title>
+</head>
+<body>
+    {{ block "main" . }}
+    {{ end }}
+</body>
+</html>
+```
+create 2 more html file under _default folder list.html for landing page and single.html for about page with below content
+
+```html
+{{ define "main"}}
+  {{ .Content}}
+{{ end }}
+```
+
+
+## Using available layouts
+
+Above we can see basic hugo structure, alternatively we can use a theme to be able to see the site
 
 ```console
 cd myspace
