@@ -50,7 +50,7 @@ create 2 more html file under _default folder list.html for landing page and sin
   {{ .Content}}
 {{ end }}
 ```
-
+---
 # Stylesheet
 
 ```html
@@ -67,6 +67,7 @@ body {
   font-family: sans-serif;
 }
 ```
+---
 # Partials
 
 Create nav.html under /layoutes/partials/ 
@@ -96,7 +97,57 @@ then add snippet in baseof.html
 ```
 That little . at the end is passing the context of the current page, which allows the partial to print out the current page’s title.
 
+---
+# Template
+```html
+<title>{{ .Params.title }} | {{ .Site.title }}</title>
+<p>you can use double curly braces like this: {{ "Hello!" }}.</p>
 
+{{ if isset .Params "title" }}
+ <title>{{ .Params.title }}</title>
+{{ else }}
+ <title>{{ .Site.title }}</title>
+{{ end }}
+
+{{ $favorite_food := "Gazelle" }}
+{{ $favorite_food }}
+
+{{ $best_friends := slice "pumbaa" "timon" "nala" "rafiki" }}
+
+<ul>
+{{ range $best_friends }}
+ <li>{{ . }}</li>
+{{ end }}
+</ul>
+```
+
+to create conditiotonal templeting, enter params in config.toml or hugo.toml file
+
+```toml
+[params]
+name = 'Functor'
+```
+then create a footer.html partial where footer will only seen if params is exist
+```html
+{{ with .Params.hide_footer }}
+ <!-- No footer here! -->
+{{ else }}
+ <footer>
+   Website made by {{ .Site.Params.name }} in {{ now.Year }}
+ </footer>
+{{ end }}
+```
+then add partial in baseof.html
+
+```html
+{{ partial "footer.html" . }}
+```
+we can hide footer in any html page(content) adding hide_footer just below name
+```html
+hide_footer: true
+```
+
+---
 # Using available layouts
 
 Above we can see basic hugo structure, alternatively we can use a theme to be able to see the site
