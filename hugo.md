@@ -12,6 +12,7 @@ hugo version
 hugo new site myspace
 code .
 ```
+---
 
 # Create custom layout
 
