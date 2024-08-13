@@ -1,4 +1,6 @@
-## HUGO
+# HUGO
+
+Setting up go and hugo in mac with brew
 
 ```console
 brew install go
@@ -11,7 +13,7 @@ hugo new site myspace
 code .
 ```
 
-## Create custom layout
+# Create custom layout
 
 create _index.md under content
 
@@ -48,7 +50,7 @@ create 2 more html file under _default folder list.html for landing page and sin
 {{ end }}
 ```
 
-## Stylesheet
+# Stylesheet
 
 ```html
 {{ $style := resources.Get "sass/main.scss" | resources.ToCSS | resources.Minify }}
@@ -64,9 +66,37 @@ body {
   font-family: sans-serif;
 }
 ```
+# Partials
+
+Create nav.html under /layoutes/partials/ 
+
+```html
+<nav>
+ <ul>
+   <li><a href="/">Home</a></li>
+   <li><a href="/about/">About</a></li>
+ </ul>
+</nav>
+```
+then add below line in the baseof.html
+```html
+{{ partial "nav.html" }}
+```
+we can also create meta partial as meta.html
+```html
+<meta charset="utf-8">
+<title>{{ print .Page.Title }}</title>
+{{ $style := resources.Get "sass/main.scss" | resources.ToCSS | resources.Minify }}
+<link rel="stylesheet" href="{{ $style.Permalink }}">
+```
+then add snippet in baseof.html
+```html
+{{ partial "meta.html" . }}
+```
+That little . at the end is passing the context of the current page, which allows the partial to print out the current page’s title.
 
 
-## Using available layouts
+# Using available layouts
 
 Above we can see basic hugo structure, alternatively we can use a theme to be able to see the site
 
