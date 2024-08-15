@@ -142,9 +142,30 @@ then add partial in baseof.html
 ```html
 {{ partial "footer.html" . }}
 ```
-we can hide footer in any html page(content) adding hide_footer just below name
+we can hide footer in any html page(content) adding hide_footer just below title
 ```html
 hide_footer: true
+```
+---
+# Creating Blog
+cretate  _index.md under /content/posts/
+```markdown
+---
+title: Blog
+---
+```
+this markdown file will follow the rules of list.html unde /layouts/_default/ folder
+we can create our spesific layout if we also create list.html  under /layout/posts folder
+```html
+{{ define "main"}}
+  {{ .Content}}
+{{ end }}
+```
+but we can also create single.html under /layout/posts/ folder so every post will follow the rules of single.html file's rules
+```html
+{{ define "main"}}
+  {{ .Content}}
+{{ end }}
 ```
 
 ---
@@ -165,11 +186,16 @@ we can also use git clone instead of fit submodule add
 
 ```console
 echo "theme = 'ananke'" >> hugo.toml
-hugo server
 ```
+or directly place below code to hugo.toml before running hugo server
+```console
+theme: ["PaperMod"]
+```
+
 to add content and publish it(files in public folder)
 ```console
 hugo new content content/posts/my-first-post.md
+hugo server
 hugo
 ```
 delete draft = true or assign false
