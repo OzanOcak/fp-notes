@@ -191,13 +191,18 @@ or directly place below code to hugo.toml before running hugo server
 ```console
 theme: ["PaperMod"]
 ```
-
+delete draft = true or assign false
 to add content and publish it(files in public folder)
 ```console
 hugo new content content/posts/my-first-post.md
 hugo server
 hugo
 ```
-delete draft = true or assign false
+
+when we created new post in terminal, the current time automatically created but if we like to create a file and add front matter later, we can modify date as
+```console
+date = `{{ .Date }}`
+```
+
 
 
